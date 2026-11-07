@@ -1,0 +1,108 @@
+{
+  "name": "HarnessRouter v0.38 API for Coding Agents (Codex, Claude Code)",
+  "description": "Self-hosted API and console for Codex, Claude Code, Hermes and Pi agents.",
+  "category": "AI/ML",
+  "tags": [
+    "harnessrouter",
+    "coding-agents",
+    "ai-agents",
+    "codex",
+    "claude-code",
+    "hermes",
+    "openai-responses",
+    "agent-api",
+    "uhp"
+  ],
+  "image": "https://cdn.jsdelivr.net/gh/HarnessRouter/harnessrouter@v0.38.2/ui/public/harnessrouter-logo.svg",
+  "upstream": {
+    "repo": "HarnessRouter/harnessrouter",
+    "version": "0.38.2 (tag v0.38.2 = 8e1cf1b598a7ea864fda3a5de064b11289b6ac84, released 2026-11-04)",
+    "image": "docker.io/harnessrouter/harnessrouter:0.38.2@sha256:444e92aab1bce6046e404570376faadc71154f98dbd0210dee379b9488f15b00 (amd64 manifest sha256:6aa91057202fd8fb2d3c92d6bc419cc4efb7ab521ecaa012bce34d3f256c5723, config sha256:df54e79f524b801584c309e58323f948ae9a0e507d693369762276e5eaace385, built 2026-11-04T22:39Z, HR_VERSION=0.38.2)",
+    "checked": "2026-11-07"
+  },
+  "services": {
+    "HarnessRouter": {
+      "icon": "https://cdn.jsdelivr.net/gh/HarnessRouter/harnessrouter@v0.38.2/ui/public/harnessrouter-logo.svg",
+      "source": {
+        "repo": "baranberkay96/harnessrouter-railway",
+        "rootDirectory": "/services/harnessrouter"
+      },
+      "startCommand": null,
+      "preDeployCommand": null,
+      "healthcheckPath": "/api/harness/v1/uhp",
+      "healthcheckTimeout": 1200,
+      "restartPolicyType": "ALWAYS",
+      "numReplicas": 1,
+      "cronSchedule": null,
+      "publicDomain": true,
+      "targetPort": 3000,
+      "tcpProxy": null,
+      "volume": {
+        "mountPath": "/data"
+      },
+      "variables": {
+        "PORT": {
+          "defaultValue": "3000",
+          "description": "Port of the HarnessRouter console (UI and API); the public domain and the healthcheck use it.",
+          "required": false
+        },
+        "HR_AUTH_USER": {
+          "defaultValue": "harnessrouter",
+          "description": "Console username. A username saved later under Profile replaces it.",
+          "required": false
+        },
+        "HR_AUTH_PASSWORD": {
+          "defaultValue": "${{secret(32, \"abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789\")}}",
+          "description": "Console password, generated at deploy; copy it from here to sign in. A password saved under Profile replaces it.",
+          "required": false
+        },
+        "HR_SECRET_KEY": {
+          "defaultValue": "${{secret(48, \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\")}}",
+          "description": "Encrypts stored provider keys and tokens on the volume. Generated; never change or delete it, or saved keys become unreadable.",
+          "required": false
+        },
+        "HR_BACKENDS": {
+          "defaultValue": "claude,codex,hermes,pi,dsh,opencode,qwen,gemini,cline,omp",
+          "description": "Agent harness CLIs installed into the volume at start (comma-separated). Each adds disk; see the README for the full list.",
+          "required": false
+        },
+        "ANTHROPIC_API_KEY": {
+          "defaultValue": "",
+          "description": "Optional Anthropic API key, used as an environment connection (Claude Code and others). Or add keys in the console.",
+          "required": false
+        },
+        "OPENAI_API_KEY": {
+          "defaultValue": "",
+          "description": "Optional OpenAI API key, used as an environment connection (Codex and others). Or add keys in the console.",
+          "required": false
+        },
+        "GEMINI_API_KEY": {
+          "defaultValue": "",
+          "description": "Optional Google AI Studio API key, used as an environment connection (Gemini CLI and others).",
+          "required": false
+        },
+        "OPENROUTER_API_KEY": {
+          "defaultValue": "",
+          "description": "Optional OpenRouter API key, used as an environment connection after any direct vendor key.",
+          "required": false
+        },
+        "HARNESS_GLOBAL_CONCURRENCY": {
+          "defaultValue": "",
+          "description": "Optional cap on agent turns running at once. Empty = the service CPU limit, between 2 and 4. Extra turns wait.",
+          "required": false
+        },
+        "HR_WORKSPACE_TTL_HOURS": {
+          "defaultValue": "72",
+          "description": "Idle session workspaces are removed after this many hours (they restore from checkpoints). 0 keeps them forever.",
+          "required": false
+        },
+        "RAILWAY_DEPLOYMENT_DRAINING_SECONDS": {
+          "defaultValue": "30",
+          "description": "Grace period for the console, gateway and runner to stop cleanly on redeploy.",
+          "required": false
+        }
+      }
+    }
+  },
+  "buckets": []
+}
