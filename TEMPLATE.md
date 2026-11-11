@@ -1,10 +1,10 @@
-# HarnessRouter v0.38 API for Coding Agents (Codex, Claude Code): Railway template spec
+# HarnessRouter API for Coding Agents (Codex, Claude Code): Railway template spec
 
 ## Listing
 
 | Field | Value |
 |---|---|
-| Name | **HarnessRouter v0.38 API for Coding Agents (Codex, Claude Code)** (62 chars; 0.x release, so major.minor) |
+| Name | **HarnessRouter API for Coding Agents (Codex, Claude Code)** (62 chars; 0.x release, so major.minor) |
 | Description | Self-hosted API and console for Codex, Claude Code, Hermes and Pi agents. (73 chars) |
 | Category | AI/ML |
 | Tags | harnessrouter, coding-agents, ai-agents, codex, claude-code, hermes, openai-responses, agent-api, uhp |

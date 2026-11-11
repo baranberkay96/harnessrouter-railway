@@ -1,5 +1,6 @@
 {
-  "name": "HarnessRouter v0.38 API for Coding Agents (Codex, Claude Code)",
+  "name": "HarnessRouter API for Coding Agents (Codex, Claude Code)",
+  "idSeed": "HarnessRouter v0.38 API for Coding Agents (Codex, Claude Code)",
   "description": "Self-hosted API and console for Codex, Claude Code, Hermes and Pi agents.",
   "category": "AI/ML",
   "tags": [
